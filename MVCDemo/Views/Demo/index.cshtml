@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "index";
+    Layout = null;
+}
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>view与controller的传值样例</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <h3>View--->Controller</h3>
+    <hr />
+    <p>1.链接方式:(使用场景:在传递重要数据的情况下一般使用此方式,即:删除等操作)</p>
+    <a href="~/Demo/GetAction?Name=aaa&Age=15">点击</a>
+    <hr />
+    <p>2.表单方式:(使用场景:传递数据较多时使用)</p>
+    <form action="/Demo/GetActionByForm" method="post">
+        <input type="text" name="Name" value="" />
+        <input type="text" name="Age" value="" />
+        <input type="radio" name="Sex" value="男" />男
+        <input type="radio" name="Sex" value="女" />女
+        <input type="text" name="Tel" value="" />
+        <input type="submit" name="name" value="提交" />
+    </form>
+    <p>2.1.表单方式:(使用场景:传递数据较多时使用)</p>
+    <form action="/Demo/GetActionByObject" method="post">
+        <input type="text" name="Name" value="test" />
+        <input type="text" name="Age" value="18" />
+        <input type="radio" name="Sex" value="男" checked="checked" />男
+        <input type="radio" name="Sex" value="女" />女
+        <input type="text" name="Tel" value="123456" />
+        <input type="submit" name="name" value="提交" />
+    </form>
+    <hr />
+    <p>3.ajax方式[post](使用场景:对值处理时方便使用)</p>
+    <div id="ajaxway">
+        <input type="text" id="Name" name="Name" value="test" />
+        <input type="text" id="Age" name="Age" value="18" />
+        <input type="radio" name="Sex" value="男" />男
+        <input type="radio" name="Sex" value="女" checked="checked" />女
+        <input type="text" id="Tel" name="Tel" value="123456" />
+        <input id="OkClick" type="button" name="name" value="提交" />
+    </div>
+    <p>3.1.ajax+form表单方式[post]:(使用场景:对值处理时方便使用)</p>
+    <div id="ajaxform">
+        <form id="dgl">
+            <input type="text" id="Name" name="Name" value="test" />
+            <input type="text" id="Age" name="Age" value="18" />
+            <input type="radio" name="Sex" value="男" />男
+            <input type="radio" name="Sex" value="女" checked="checked" />女
+            <input type="text" id="Tel" name="Tel" value="123456" />
+            <input type="button" onclick="submitinfo();" name="name" value="提交" />
+        </form>
+    </div>
+
+    <hr />
+
+    <script>
+        jQuery(function () {
+
+            $("#OkClick").click(function () {
+                $.post(
+                    "/Demo/GetActionByAjax",
+                    {
+                        Name: $("#Name").val(),
+                        Age: $("#Age").val(),
+                        Sex: $("#ajaxway > input[type=radio]:checked").val(),
+                        Tel: $("#Tel").val()
+                    }, function (data, state) {
+                        alert(data.Name + "," + data.Age + "," + data.Sex + "," + data.Tel);
+                    });
+            });
+        });
+
+        function submitinfo()
+        {
+            //注意需要序列化form表单的值
+            $.post(
+                    "/Demo/GetActionByAjaxForm", $("#dgl").serialize() , function (data, state) {
+                        alert(data.Name + "," + data.Age + "," + data.Sex + "," + data.Tel);
+              });
+        }
+
+    </script>
+</body>
+</html>

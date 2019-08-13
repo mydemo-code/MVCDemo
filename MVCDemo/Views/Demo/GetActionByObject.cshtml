@@ -1,0 +1,23 @@
+﻿@model MVCDemo.Models.Person
+@{
+    ViewBag.Title = "GetActionByObject";
+    Layout = null;
+}
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>view与controller的传值样例</title>
+</head>
+<body>
+    <h3>Controller--->View</h3>
+    <p>表单方式:(使用场景:传递数据较多时使用,通过对象接收[绑定实体模型])</p>
+    绑定model[强类型]接受到的值:@Model.Name @Model.Sex @Model.Age @Model.Tel
+    <br />
+    使用ViewBag:@ViewBag.peson.Name @ViewBag.peson.Sex @ViewBag.peson.Age @ViewBag.peson.Tel
+    <br />
+    使用ViewData[获取的是对象]:@ViewData.Model.Name @ViewData.Model.Sex @ViewData.Model.Age @ViewData.Model.Tel
+    <hr />
+</body>
+</html>
+
