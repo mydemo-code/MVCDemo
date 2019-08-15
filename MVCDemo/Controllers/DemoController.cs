@@ -62,7 +62,34 @@ namespace MVCDemo.Controllers
             return Json(p);
         }
 
+        //通过ajax请求将list转化json
+        [HttpPost]
+        public ActionResult GetActionListByAjax()
+        {
+            List<Models.Person> list = new List<Models.Person>()
+            {
+                new Models.Person{  Name="aaa", Age=18, Sex="女", Tel=1262313564 },
+                new Models.Person{  Name="bbb", Age=20, Sex="女", Tel=150484 },
+                new Models.Person{  Name="ccc", Age=21, Sex="男", Tel=1869564 },
+                new Models.Person{  Name="ddd", Age=22, Sex="男", Tel=1762313564 },
+            };
+            return Json(list);
+        }
 
+
+        public ActionResult GetActionList()
+        {
+            List<Models.Person> list = new List<Models.Person>()
+            {
+                new Models.Person{  Name="aaa", Age=18, Sex="女", Tel=1262313564 },
+                new Models.Person{  Name="bbb", Age=20, Sex="女", Tel=150484 },
+                new Models.Person{  Name="ccc", Age=21, Sex="男", Tel=1869564 },
+                new Models.Person{  Name="ddd", Age=22, Sex="男", Tel=1762313564 },
+            };
+            ViewBag.GetListData = list;
+            ViewData.Model = list;
+            return View(list);
+        }
 
 
     }

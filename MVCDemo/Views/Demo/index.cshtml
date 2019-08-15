@@ -55,12 +55,28 @@
             <input type="button" onclick="submitinfo();" name="name" value="提交" />
         </form>
     </div>
-
     <hr />
+    <p>4.ajax获取后台action的List集合数据返回json</p>
+    <div>
+        <button id="getlistdata" class="btn-link">点击获取控制器中的List</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>电话</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
 
     <script>
         jQuery(function () {
-
+            //ajax传递数据给action
             $("#OkClick").click(function () {
                 $.post(
                     "/Demo/GetActionByAjax",
@@ -70,9 +86,31 @@
                         Sex: $("#ajaxway > input[type=radio]:checked").val(),
                         Tel: $("#Tel").val()
                     }, function (data, state) {
+                        //获取action传来的值
                         alert(data.Name + "," + data.Age + "," + data.Sex + "," + data.Tel);
                     });
             });
+
+            //Ajax获取list的json格式
+            $("#getlistdata").click(function () {
+                var str = "";
+                $.ajax({
+                    type:"post",
+                    url: "/Demo/GetActionListByAjax",
+                    dataType: "json",
+                    success: function (d, s) {
+                        $(d).each(function (index,item) {
+                            str += "<tr><td>"+item.Name+"</td><td>"+item.Age+"</td><td>"+item.Sex+"</td><td>"+item.Tel+"</td></tr>";
+                        });
+                        $("tbody").append(str);
+                        //alert(str);
+                    }
+
+                });
+            });
+
+
+
         });
 
         function submitinfo()

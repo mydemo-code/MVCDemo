@@ -1,0 +1,222 @@
+﻿@{
+    Layout = null;
+
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>LayUI表单</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/layui/layui.all.js"></script>
+
+</head>
+<body>
+    <div>
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">输入框</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码框</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择框</label>
+                <div class="layui-input-block">
+                    <select name="city" lay-verify="required">
+                        <option value=""></option>
+                        <option value="0">北京</option>
+                        <option value="1">上海</option>
+                        <option value="2">广州</option>
+                        <option value="3">深圳</option>
+                        <option value="4">杭州</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">复选框</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="like[write]" title="写作">
+                    <input type="checkbox" name="like[read]" title="阅读" checked>
+                    <input type="checkbox" name="like[dai]" title="发呆">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">开关</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="switch" lay-skin="switch">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">单选框</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="男" title="男">
+                    <input type="radio" name="sex" value="女" title="女" checked>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">文本域</label>
+                <div class="layui-input-block">
+                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr class="layui-bg-blue" />
+
+    <div class="layui-inline">
+        <!-- 注意：这一层元素并不是必须的 -->
+        <input type="text" class="layui-input" id="test1">
+    </div>
+
+    <hr class="layui-bg-blue" />
+    <div>
+        <table id="demo" lay-filter="test"></table>
+    </div>
+
+    <script src="~/layui/laydate/laydate.js"></script>
+    <script>
+         //*******************************************//
+        //Demo表单
+        layui.use(['form'], function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+
+         //*******************************************//
+        //时间插件
+        layui.use(['laydate'], function () {
+            //日历实例
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#test1' //指定元素
+                , format: 'yyyy年MM月dd日',
+                mark: {
+                    '0-10-14': '生日'
+                    , '0-12-31': '跨年' //每年12月31日
+                    , '0-0-10': '工资' //每个月10号
+                    , '2017-8-15': '' //具体日期
+                    , '2017-8-20': '预发' //如果为空字符，则默认显示数字+徽章
+                    , '2017-8-21': '发布'
+                }
+            });
+        });
+         //*******************************************//
+        //数据表格
+        layui.use(['table'], function () {
+            layui.use('table', function () {
+                var table = layui.table;
+
+                //第一个实例
+                table.render({
+                    elem: '#demo'
+                    , height: 312
+                    , url: '/demo/table/user/' //数据接口
+                    , page: true //开启分页
+                    , cols: [[ //表头
+                        { field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left' }
+                        , { field: 'username', title: '用户名', width: 80 }
+                        , { field: 'sex', title: '性别', width: 80, sort: true }
+                        , { field: 'city', title: '城市', width: 80 }
+                        , { field: 'sign', title: '签名', width: 177 }
+                        , { field: 'experience', title: '积分', width: 80, sort: true }
+                        , { field: 'score', title: '评分', width: 80, sort: true }
+                        , { field: 'classify', title: '职业', width: 80 }
+                        , { field: 'wealth', title: '财富', width: 135, sort: true }
+                    ]]
+                });
+
+            });
+
+        });
+            //*******************************************//
+                        //弹框
+                        //eg1
+                        //layer.alert('酷毙了', {icon: 1});
+                        //eg2
+                        // layer.msg('不开心。。', {icon: 5});
+                        //eg3
+                        //layer.load(1); //风格1的加载
+
+                        //*******************************************//
+                        //弹出层
+                        //eg1
+                        //layer.confirm('纳尼？', {
+                        //  btn: ['按钮一', '按钮二', '按钮三'] //可以无限个按钮
+                        //    , btn3: function (index, layero) {
+                        //        layer.alert(3);
+                        //    //按钮【按钮三】的回调
+                        //  }
+                        //}, function (index, layero) {
+                        //        layer.alert(layero);
+                        //  //按钮【按钮一】的回调
+                        //    }, function (index) {
+                        //        layer.alert(2);
+                        //  //按钮【按钮二】的回调
+                        //});
+
+
+                        //eg2
+                        //layer.open({
+                        //    content: 'test'
+                        //    , btn: ['按钮一', '按钮二', '按钮三'],
+                        //    anim: -1,//0-6,
+                        //     skin: 'layui-layer-molv' //默认皮肤
+                        //    , yes: function (index, layero) {
+                        //        //按钮【按钮一】的回调
+                        //    }
+                        //    , btn2: function (index, layero) {
+                        //        //按钮【按钮二】的回调
+
+                        //        //return false 开启该代码可禁止点击该按钮关闭
+                        //    }
+                        //    , btn3: function (index, layero) {
+                        //        //按钮【按钮三】的回调
+
+                        //        //return false 开启该代码可禁止点击该按钮关闭
+                        //    }
+                        //    , cancel: function () {
+                        //        //右上角关闭回调
+
+                        //        //return false 开启该代码可禁止点击该按钮关闭
+                        //    }
+                        //});
+                        //*******************************************//
+                        //layer.prompt(options, yes) - 输入层
+                        //例子1
+                        //layer.prompt(function(value, index, elem){
+                        //  alert(value); //得到value
+                        //  layer.close(index);
+                        //});
+                        //例子2
+                        //layer.prompt({
+                        //  formType: 2,
+                        //  value: '初始值',
+                        //  title: '请输入值',
+                        //  area: ['800px', '350px'] //自定义文本域宽高
+                        //}, function(value, index, elem){
+                        //  alert(value); //得到value
+                        //  layer.close(index);
+                        //});
+
+
+    </script>
+
+</body>
+</html>

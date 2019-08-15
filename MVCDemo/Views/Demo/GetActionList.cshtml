@@ -1,0 +1,79 @@
+﻿@*绑定model*@
+@model IEnumerable<MVCDemo.Models.Person>
+@{
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>获取List数据</title>
+</head>
+<body>
+    <p>1.使用viewbag获取List数据</p>
+    <div>
+        <table>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>电话</th>
+            </tr>
+            @foreach (var item in ViewBag.GetListData)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Age</td>
+                    <td>@item.Sex</td>
+                    <td>@item.Tel</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <hr />
+    <p>2.使用viewdata获取List数据</p>
+    <div>
+         <table>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>电话</th>
+            </tr>
+            @foreach (var item in @ViewData.Model.ToList())
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Age</td>
+                    <td>@item.Sex</td>
+                    <td>@item.Tel</td>
+                </tr>
+            }
+        </table>
+        
+    </div>
+
+    <hr />
+    <p>3.使用强类型获取List数据</p>
+    <div>
+        <table>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>电话</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Age</td>
+                    <td>@item.Sex</td>
+                    <td>@item.Tel</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
+
+

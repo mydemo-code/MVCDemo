@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>LayUI 样例</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/layui/layui.all.js"></script>
+</head>
+<body>
+    <h3>Hello LayUI!</h3>
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">标题一</li>
+            <li>标题二</li>
+            <li>标题三</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">内容1</div>
+            <div class="layui-tab-item">内容2</div>
+            <div class="layui-tab-item">内容3</div>
+        </div>
+    </div>
+    <i class="layui-icon layui-icon-auz" style="font-size: 30px; color: yellow;"></i>
+    <i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="font-size: 30px; color:gray;"></i>
+    <div class=""></div>
+
+    <button class="layui-btn layui-btn-radius" lay-submit lay-filter="login">登入</button>
+    <script>
+
+
+        //一般直接写在一个js文件中
+        //layui.use(['layer', 'form'], function () {
+        //    var layer = layui.layer
+        //        , form = layui.form;
+        //    layer.msg('Hello World');
+        //});
+
+        !function () {
+            var layer = layui.layer
+                , form = layui.form;
+
+            layer.msg('Hello World');
+        }();
+
+
+    </script>
+</body>
+</html>
