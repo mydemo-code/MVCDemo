@@ -16,7 +16,7 @@ namespace MVCDemo
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Demo", action = "index", id = UrlParameter.Optional }
+                defaults: new { controller = "EFDemo", action = "ShowInfo", id = UrlParameter.Optional }
             );
         }
     }
