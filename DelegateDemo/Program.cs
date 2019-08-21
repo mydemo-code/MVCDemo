@@ -19,32 +19,19 @@ namespace DelegateDemo
             Console.WriteLine("\n");
             ActionDelegate(student1, student2);
             Console.WriteLine("\n");
-            FuncDelegate(student1, student2);
-            Console.WriteLine("\n");
-        }
 
-        /// <summary>
-        /// Func带返回值委托的调用
-        /// </summary>
-        /// <param name="student1"></param>
-        /// <param name="student2"></param>
-        private static void FuncDelegate(Student student1, Student student2)
-        {
             //实例化一个func
-            Console.WriteLine("Func函数求和:");
             string a = FuncDemo.func(1, 2);
             Console.WriteLine(a);
-            Console.WriteLine("\n");
-
-
-            Console.WriteLine("Func函数计算两个学生年龄和:");
-            string count = FuncDemo.Test<Student, Student>(FuncDemo.Func, student1, student2).ToString();
+          
+            string count = FuncDemo.Test<Student,Student>(FuncDemo.Func, student1, student2).ToString();
             Console.WriteLine(count);
-            Console.WriteLine("\n");
-
-            Console.WriteLine("Func函数计两个数的乘积:");
-            string rs = FuncDemo.Test<int, int>(FuncDemo.Func, 4, 2).ToString();
+            
+            string rs = FuncDemo.Test<int,int>(FuncDemo.Func,4, 2).ToString();
             Console.WriteLine(rs);
+
+            
+
         }
 
         /// <summary>
