@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MVCDemo.Models.StaffTable>
+@{ 
+    Layout = null;
+}
+
+<p>
+    @Html.ActionLink("添加","CreatInfo")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffImg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffSex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffIphone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffStime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffWages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffImg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffSex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffIphone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffStime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffWages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "UpdateInfo", new { id=item.StaffNum }) |
+            @*@Html.ActionLink("详情", "Details", new { id=item.StaffNum }) |*@
+            @Html.ActionLink("删除", "DeleteInfo", new { id=item.StaffNum })
+        </td>
+    </tr>
+}
+
+</table>

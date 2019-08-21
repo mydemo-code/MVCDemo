@@ -129,11 +129,30 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\EFbyAjaxController.cs" />
     <Compile Include="Controllers\EFDemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayUIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginTable.cs">
+      <DependentUpon>LoginModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\StaffModel.Context.cs">
@@ -273,6 +292,16 @@
     <Content Include="layui\lay\modules\tree.js" />
     <Content Include="layui\lay\modules\upload.js" />
     <Content Include="layui\lay\modules\util.js" />
+    <Content Include="Models\LoginModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LoginModel.edmx</DependentUpon>
+      <LastGenOutput>LoginModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LoginModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LoginModel.edmx</DependentUpon>
+      <LastGenOutput>LoginModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\StaffModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StaffModel.Context.cs</LastGenOutput>
@@ -298,6 +327,13 @@
     </EntityDeploy>
     <Content Include="Models\StaffModel.edmx.diagram">
       <DependentUpon>StaffModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\LoginModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LoginModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LoginModel.edmx.diagram">
+      <DependentUpon>LoginModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -333,6 +369,7 @@
     <Content Include="Views\EFDemo\ShowInfo.cshtml" />
     <Content Include="Views\EFDemo\CreatInfo.cshtml" />
     <Content Include="Views\EFDemo\UpdateInfo.cshtml" />
+    <Content Include="Views\EFbyAjax\ShowInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
