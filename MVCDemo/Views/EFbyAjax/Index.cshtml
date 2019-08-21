@@ -1,0 +1,107 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>信息展示</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div>
+        <p>
+            登录名:<input type="text" name="name" value="" id="LoginName" />
+        </p>
+        <p>
+            新增:<input type="button" name="name" value="添加" id="addlogin" />
+        </p>
+        <p>
+            <input type="button" name="name" value="查询" id="selectbyname" />
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        LoginId
+                    </td>
+                    <td>
+                        LoginNmae
+                    </td>
+                    <td>
+                        LoginPwd
+                    </td>
+                    <td>
+                        StaffNum
+                    </td>
+                    <td>
+                        JobNum
+                    </td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <script>
+        $().ready(function () {
+            ShowData();
+        });
+
+
+        $("#selectbyname").click(function () {
+            ShowData();
+        });
+
+        $("#addlogin").click(function () {
+             window.location.href = "/EFbyAjax/AddInfo";
+        });
+
+        function ShowData() {
+            $("tbody").text("");
+            $.getJSON("/EFbyAjax/ShowInfo", { strwhere: $("#LoginName").val() }, function (d, s) {
+                if (s == "success") {
+                    var str = "";
+                    $(d).each(function (index, item) {
+                        str += "<tr><td>" + item.LoginId
+                            + "</td><td>" + item.LoginName
+                            + "</td><td>" + item.LoginPwd
+                            + "</td><td>" + item.StaffNum
+                            + "</td><td>" + item.JobNum
+                            + "</td><td><button onclick=Deletebyid('" + item.LoginId + "')>删除</button></td>"
+                            + "<td><button onclick=Updatebyid('" + item.LoginId + "')>更新</button></td></tr>";
+                    });
+                    $("tbody").append(str);
+                }
+                else {
+                    alert("error");
+                }
+
+            });
+        }
+
+
+        function Deletebyid(loginid) {
+            $.post("/EFbyAjax/DeleteById", { id: loginid }, function (d, s) {
+                if (s == "success" ||d=="true") {
+                    alert("删除成功!");
+                     ShowData();
+                } else {
+                    alert("删除失败!");
+                }
+
+            });
+
+        }
+
+        function Updatebyid(loginid) {
+            window.location.href = "/EFbyAjax/Updatebyid?id=" + loginid + "";
+        }
+
+    </script>
+</body>
+</html>
+

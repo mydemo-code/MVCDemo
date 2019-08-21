@@ -369,7 +369,9 @@
     <Content Include="Views\EFDemo\ShowInfo.cshtml" />
     <Content Include="Views\EFDemo\CreatInfo.cshtml" />
     <Content Include="Views\EFDemo\UpdateInfo.cshtml" />
-    <Content Include="Views\EFbyAjax\ShowInfo.cshtml" />
+    <Content Include="Views\EFbyAjax\Index.cshtml" />
+    <Content Include="Views\EFbyAjax\UpdateById.cshtml" />
+    <Content Include="Views\EFbyAjax\AddInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

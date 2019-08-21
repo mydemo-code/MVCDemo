@@ -1,0 +1,49 @@
+﻿@model MVCDemo.Models.LoginTable
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>信息修改</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div> 
+        <form id="dg">
+            <p>
+                LoginId:<input type="text" name="LoginId" value="@Model.LoginId" />
+            </p>
+            <p>
+                LoginName:<input type="text" name="LoginName" value="@Model.LoginName" />
+            </p>
+            <p>
+                LoginPwd:<input type="text" name="LoginPwd" value="@Model.LoginPwd" />
+            </p>
+            <p>
+                StaffNum:<input type="text" name="StaffNum" value="@Model.StaffNum" />
+            </p>
+            <p>
+                JobNum:<input type="text" name="JobNum" value="@Model.JobNum" />
+            </p>
+            <p>
+                <input type="button" name="name" value="提交" onclick="Update();" />
+                @Html.ActionLink("返回","index","EFbyAjax")
+            </p>
+        </form>
+    </div>
+   
+    <script>
+    function Update() {
+        $.post("/EFbyAjax/UpdateById", $("#dg").serialize(), function (d, s) {
+            if (s == "success" && d == "true") {
+                window.location.href = "/EFbyAjax/Index"
+            }
+        });
+    }
+    </script>
+</body>
+</html>
